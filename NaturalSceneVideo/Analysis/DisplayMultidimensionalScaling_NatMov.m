@@ -434,15 +434,6 @@ BSlag = BSlag(rmids, :);
 Plane = Plane(rmids, :);
 
 %%
-if sum(isnan(Pairdist(:))) >0
-    cPairdist = Pairdist;
-    [coeff1,score1,~,~,~,mu1] = pca(Pairdist,'algorithm','als');
-    Pairdist = real(score1)*real(coeff1') + repmat(mu1,size(Pairdist, 1),1);
-    ids = ~(cPairdist == 0 | isnan(cPairdist));
-    r = corr(cPairdist(ids), Pairdist(ids));
-    % X = ExpVecEDM(Pairdist, [], 23);
-end
-%%
 % figure; imagesc(isnan(Pairdist));
 %%
 Pairdist(eye(size(Pairdist))==1) = 0;
